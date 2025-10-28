@@ -6,16 +6,27 @@ public class BlackDot : DotBase
 {
     private Rigidbody rb;
     public float randomSpeed = 1.0f;
+
+    private MapConfig _mapConfig;
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        _mapConfig = GameObject.Find("MapConfig").GetComponent<MapConfig>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        ShowVector(transform.position);
+        transform.position = _mapConfig.GetNewPos(transform.position,rb.velocity);
+        ShowVector(transform.position);
         
+    }
+
+    void ShowVector(Vector3 v)
+    {
+        Debug.Log($"{gameObject.name} pos x:{v.x} pos y:{v.y} pos z:{v.z}");
     }
     
     public override void OnDotPressed()
