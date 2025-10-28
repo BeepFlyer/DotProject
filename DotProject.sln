@@ -1,0 +1,29 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp", "Assembly-CSharp.csproj", "{df7054aa-a1e7-508c-2b5a-86a5826c85df}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NaughtyAttributes.Test", "NaughtyAttributes.Test.csproj", "{2e5c0ec7-a30b-bea9-9702-e8bb7764271c}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NaughtyAttributes.Core", "NaughtyAttributes.Core.csproj", "{c0434b0b-1d35-8ceb-b240-0007dc17f72d}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NaughtyAttributes.Editor", "NaughtyAttributes.Editor.csproj", "{4a67ec12-6469-d145-48a0-210c9fb1649c}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{df7054aa-a1e7-508c-2b5a-86a5826c85df}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{df7054aa-a1e7-508c-2b5a-86a5826c85df}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2e5c0ec7-a30b-bea9-9702-e8bb7764271c}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2e5c0ec7-a30b-bea9-9702-e8bb7764271c}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{c0434b0b-1d35-8ceb-b240-0007dc17f72d}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{c0434b0b-1d35-8ceb-b240-0007dc17f72d}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4a67ec12-6469-d145-48a0-210c9fb1649c}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4a67ec12-6469-d145-48a0-210c9fb1649c}.Debug|Any CPU.Build.0 = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
