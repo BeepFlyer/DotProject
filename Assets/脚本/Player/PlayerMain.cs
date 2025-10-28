@@ -6,16 +6,24 @@ using UnityEngine;
 public class PlayerMain : MonoBehaviour
 {
     public float speed = 1.0f;
+
+    public GameObject blackDot;
+
+    private GameObject dotsParent;
     // Start is called before the first frame update
     void Start()
     {
-        
+        dotsParent = GameObject.Find("dotsParent");
     }
 
     // Update is called once per frame
     void Update()
     {
         HandleMove();
+        if (Input.GetMouseButtonDown(0))
+        {
+            MouseDown();
+        }
     }
 
     void HandleMove()
@@ -27,8 +35,22 @@ public class PlayerMain : MonoBehaviour
         
     }
 
-    private void OnMouseDown()
+    private void MouseDown()
     {
-        Physics.Raycast(transform.position, Vector3.forward, 1000);
+        RaycastHit hit;
+        bool hasHit = Physics.Raycast(transform.position, Vector3.forward, out hit, 1000);
+        Debug.Log($"HasHit{Convert.ToString(hasHit)}");
+        if (hasHit)
+        {
+            //点到东西了
+        }
+        else
+        {
+            //没点到东西
+            Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            pos.z = 0;
+            GameObject go = Instantiate(blackDot, pos, Quaternion.identity);
+            go.transform.parent = dotsParent.transform;
+        }
     }
 }
