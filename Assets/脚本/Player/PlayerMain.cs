@@ -39,10 +39,11 @@ public class PlayerMain : MonoBehaviour
     {
         RaycastHit hit;
         bool hasHit = Physics.Raycast(transform.position, Vector3.forward, out hit, 1000);
-        Debug.Log($"HasHit{Convert.ToString(hasHit)}");
+        //Debug.Log($"HasHit{Convert.ToString(hasHit)}");
         if (hasHit)
         {
             //点到东西了
+            hit.collider.SendMessage("OnDotPressed");
         }
         else
         {

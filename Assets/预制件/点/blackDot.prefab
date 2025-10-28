@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1978618580150767338}
   - component: {fileID: 410644489158338771}
   - component: {fileID: 407694438943576324}
+  - component: {fileID: 8730516950265452771}
   m_Layer: 0
   m_Name: blackDot
   m_TagString: Untagged
@@ -115,3 +116,15 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 120
   m_CollisionDetection: 0
+--- !u!114 &8730516950265452771
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1978618580150767339}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99b0a2ac36e69f84eb22c7b5f9b9f3ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

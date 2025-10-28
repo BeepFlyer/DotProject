@@ -15,4 +15,9 @@ public class DotBase : MonoBehaviour
     {
         
     }
+
+    public virtual void OnDotPressed()
+    {
+        Debug.Log(gameObject.name+"被按压了");
+    }
 }
