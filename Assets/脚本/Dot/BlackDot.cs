@@ -18,15 +18,16 @@ public class BlackDot : DotBase
     // Update is called once per frame
     void Update()
     {
-        ShowVector(transform.position);
+        ShowVector(transform.position,"before");
         transform.position = _mapConfig.GetNewPos(transform.position,rb.velocity);
-        ShowVector(transform.position);
+        ShowVector(transform.position,"after");
         
+
     }
 
-    void ShowVector(Vector3 v)
+    void ShowVector(Vector3 v,string str)
     {
-        Debug.Log($"{gameObject.name} pos x:{v.x} pos y:{v.y} pos z:{v.z}");
+        Debug.Log(str+$"{gameObject.name} pos x:{v.x} pos y:{v.y} pos z:{v.z}");
     }
     
     public override void OnDotPressed()

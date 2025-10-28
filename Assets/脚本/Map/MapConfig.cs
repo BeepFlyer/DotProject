@@ -19,12 +19,12 @@ public class MapConfig : MonoBehaviour
 
     public Vector3 GetNewPos(Vector3 pos,Vector3 vel)
     {
-        if ((vel.x > 0 && pos.x > size_X)||(vel.x < 0 && pos.x < -size_X))
+        if ((vel.x > 0 && pos.x > size_X/2)||(vel.x < 0 && pos.x < -size_X/2))
         {
             pos.x = -pos.x;
         }
         
-        if ((vel.y > 0 && pos.y > size_Y)||(vel.y < 0 && pos.y < -size_Y))
+        if ((vel.y > 0 && pos.y > size_Y/2)||(vel.y < 0 && pos.y < -size_Y/2))
         {
             pos.y = -pos.y;
         }
