@@ -38,12 +38,14 @@ public class PlayerMain : MonoBehaviour
     private void MouseDown()
     {
         RaycastHit hit;
-        bool hasHit = Physics.Raycast(transform.position, Vector3.forward, out hit, 1000);
+        Vector3 origin = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        bool hasHit = Physics.Raycast(origin, Vector3.forward, out hit, 1000);
         //Debug.Log($"HasHit{Convert.ToString(hasHit)}");
         if (hasHit)
         {
             //点到东西了
             hit.collider.SendMessage("OnDotPressed");
+            Debug.DrawLine(origin,origin+50*Vector3.forward,Color.green,3.0f);
         }
         else
         {
@@ -52,6 +54,9 @@ public class PlayerMain : MonoBehaviour
             pos.z = 0;
             GameObject go = Instantiate(blackDot, pos, Quaternion.identity);
             go.transform.parent = dotsParent.transform;
+            Debug.DrawLine(origin,origin+50*Vector3.forward,Color.red,3.0f);
+            
+
         }
     }
 }
