@@ -1,9 +1,12 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Numerics;
 using DG.Tweening;
+using Unity.VisualScripting;
 using UnityEngine;
 using Random = UnityEngine.Random;
+using Vector3 = UnityEngine.Vector3;
 
 public class BlackDot : DotBase
 {
@@ -14,6 +17,7 @@ public class BlackDot : DotBase
     private float maxAnimeTime = 0.5f;
     private float nowAnimeTime = 0.5f;
     private float originScale = 1;
+
     
 
     private MapConfig _mapConfig;
@@ -54,11 +58,27 @@ public class BlackDot : DotBase
         nowAnimeTime = 0;
     }
 
+    public override Vector3 GetSpeed()
+    {
+        return rb.velocity;
+    }
+
     private void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.CompareTag("Dot"))
+        if (!sendFlag)
         {
-            
+            sendFlag = true;
+            return;
+        }
+        if (other.collider.gameObject.CompareTag("Dot"))
+        {
+            DotBase dotScript = other.collider.GetComponent<DotBase>();
+            DotType colliderDotType = dotScript.Type;
+            if (colliderDotType == DotType.BlackDot)
+            {
+                dotScript.sendFlag = false;
+                God.dotManager.TwoBlackDotCollide(this, dotScript);
+            }
         }
     }
 }

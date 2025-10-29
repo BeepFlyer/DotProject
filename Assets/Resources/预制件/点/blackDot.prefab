@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 8730516950265452771}
   m_Layer: 0
   m_Name: blackDot
-  m_TagString: Untagged
+  m_TagString: Dot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -128,6 +128,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99b0a2ac36e69f84eb22c7b5f9b9f3ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sendFlag: 1
   randomSpeed: 1
   onClickCurve:
     serializedVersion: 2
