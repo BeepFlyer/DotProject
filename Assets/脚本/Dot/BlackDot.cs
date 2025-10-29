@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 
 public class BlackDot : DotBase
@@ -7,12 +8,19 @@ public class BlackDot : DotBase
     private Rigidbody rb;
     public float randomSpeed = 1.0f;
 
+    public AnimationCurve onClickCurve;
+    private float maxAnimeTime = 0.5f;
+    private float nowAnimeTime = 0.5f;
+    private float originScale = 1;
+    
+
     private MapConfig _mapConfig;
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         _mapConfig = GameObject.Find("MapConfig").GetComponent<MapConfig>();
+        originScale = transform.localScale.x;
     }
 
     // Update is called once per frame
@@ -21,7 +29,11 @@ public class BlackDot : DotBase
         //ShowVector(transform.position,"before");
         transform.position = _mapConfig.GetNewPos(transform.position,rb.velocity);
         //ShowVector(transform.position,"after");
-        
+        if (nowAnimeTime < maxAnimeTime)
+        {
+            transform.localScale = Vector3.one* (onClickCurve.Evaluate((nowAnimeTime / maxAnimeTime))+originScale);
+            nowAnimeTime += Time.deltaTime;
+        }
 
     }
 
@@ -37,6 +49,7 @@ public class BlackDot : DotBase
         Vector3 dir = new Vector3(Mathf.Cos(angle * Mathf.Deg2Rad), Mathf.Sin(angle * Mathf.Deg2Rad), 0f) * randomSpeed;
         rb.velocity += dir;
         
+        nowAnimeTime = 0;
     }
 
 }
