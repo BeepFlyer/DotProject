@@ -20,9 +20,9 @@ public class DotManager
 
     }
     
-    public DotBase Spawn(string typeName,Vector3 pos)
+    public DotBase Spawn(int typeId,Vector3 pos)
     {
-        DotBase script = factory.Spawn(typeName, pos);
+        DotBase script = factory.Spawn(typeId, pos);
         if (script != null)
         {
             dotList[script.GetId()] = script;

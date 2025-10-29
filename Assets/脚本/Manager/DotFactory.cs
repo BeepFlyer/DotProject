@@ -34,36 +34,30 @@ public class DotFactory
         this.dotHolder = dotHolder;
     }
 
-    public DotBase Spawn(string typeName)
+    public DotBase Spawn(int typeId)
     {
-        if (spawnDict.ContainsKey(typeName))
+        if (!dotHolder)
         {
-            if (!dotHolder)
-            {
-                Debug.LogError("没找到点存放处");
-                return null;
-            }
-
-            GameObject dotObj = spawnDict[typeName];
-            if (!dotObj ) Debug.LogError("字典无点"+typeName);
-            GameObject go = GameObject.Instantiate(dotObj, Vector3.zero, Quaternion.identity);
-            go.transform.parent = dotHolder.transform;
-            DotBase script = go.GetOrAddComponent<DotBase>();
-            script.SetId(dotId);
-            dotId++;
-            return script;
-
-        }
-        else
-        {
-            Debug.LogError("没有找到对应预制件："+typeName);
+            Debug.LogError("没找到点存放处");
             return null;
         }
+
+        //GameObject dotObj = spawnDict[typeName];
+        //if (!dotObj ) Debug.LogError("字典无点"+typeName);
+        //GameObject go = GameObject.Instantiate(dotObj, Vector3.zero, Quaternion.identity);
+        GameObject go = ObjectPool.Instance.GetObject(typeId,Vector3.zero,Quaternion.identity);
+        go.transform.parent = dotHolder.transform;
+        DotBase script = go.GetOrAddComponent<DotBase>();
+        script.SetId(dotId);
+        dotId++;
+        return script;
+
+        
     }
     
-    public DotBase Spawn(string typeName,Vector3 pos)
+    public DotBase Spawn(int typeId,Vector3 pos)
     {
-        DotBase script=this.Spawn(typeName);
+        DotBase script=Spawn(typeId);
         script.transform.position = pos;
         return script;
     }
