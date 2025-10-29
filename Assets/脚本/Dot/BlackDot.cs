@@ -18,9 +18,9 @@ public class BlackDot : DotBase
     // Update is called once per frame
     void Update()
     {
-        ShowVector(transform.position,"before");
+        //ShowVector(transform.position,"before");
         transform.position = _mapConfig.GetNewPos(transform.position,rb.velocity);
-        ShowVector(transform.position,"after");
+        //ShowVector(transform.position,"after");
         
 
     }
