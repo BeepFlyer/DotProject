@@ -34,7 +34,7 @@ public class DotFactory
         this.dotHolder = dotHolder;
     }
 
-    public DotBase Spawn(int typeId)
+    public DotBase Spawn(DotType dotType)
     {
         if (!dotHolder)
         {
@@ -45,19 +45,20 @@ public class DotFactory
         //GameObject dotObj = spawnDict[typeName];
         //if (!dotObj ) Debug.LogError("字典无点"+typeName);
         //GameObject go = GameObject.Instantiate(dotObj, Vector3.zero, Quaternion.identity);
-        GameObject go = ObjectPool.Instance.GetObject(typeId,Vector3.zero,Quaternion.identity);
+        GameObject go = ObjectPool.Instance.GetObject((int)GlobalMapping.dotType2prefab[dotType],Vector3.zero,Quaternion.identity);
         go.transform.parent = dotHolder.transform;
         DotBase script = go.GetOrAddComponent<DotBase>();
         script.SetId(dotId);
-        dotId++;
+        script.Type = dotType;
+        dotId = 1;
         return script;
 
         
     }
     
-    public DotBase Spawn(int typeId,Vector3 pos)
+    public DotBase Spawn(DotType dotType,Vector3 pos)
     {
-        DotBase script=Spawn(typeId);
+        DotBase script=Spawn(dotType);
         script.transform.position = pos;
         return script;
     }

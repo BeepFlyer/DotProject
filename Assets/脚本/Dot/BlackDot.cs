@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class BlackDot : DotBase
 {
@@ -52,4 +54,11 @@ public class BlackDot : DotBase
         nowAnimeTime = 0;
     }
 
+    private void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.CompareTag("Dot"))
+        {
+            
+        }
+    }
 }

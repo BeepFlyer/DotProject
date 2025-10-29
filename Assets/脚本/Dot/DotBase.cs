@@ -6,23 +6,20 @@ using UnityEngine;
 public class DotBase : MonoBehaviour
 {
     protected ulong id;
-    private void Awake()
-    {
-        
-    }
 
-    // Start is called before the first frame update
-    void Start()
+    public DotType Type
     {
-        
+        get
+        {
+            return _type;
+        }
+        set
+        {
+            _type = value;
+        }
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
+    protected DotType _type;
+    
     public void SetId(ulong id)
     {
         this.id = id;

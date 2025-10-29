@@ -52,7 +52,7 @@ public class PlayerMain : MonoBehaviour
             pos.z = 0;
             //GameObject go = Instantiate(blackDot, pos, Quaternion.identity);
             //go.transform.parent = dotsParent.transform;
-            God.dotManager.Spawn((int)PrefabEnum.BalckDot, pos);
+            God.dotManager.Spawn(DotType.BlackDot, pos);
             Debug.DrawLine(origin,origin+50*Vector3.forward,Color.red,3.0f);
             
 
