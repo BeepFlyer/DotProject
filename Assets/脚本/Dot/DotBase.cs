@@ -1,9 +1,16 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class DotBase : MonoBehaviour
 {
+    protected ulong id;
+    private void Awake()
+    {
+        
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -14,6 +21,16 @@ public class DotBase : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void SetId(ulong id)
+    {
+        this.id = id;
+    }
+    
+    public ulong GetId()
+    {
+        return this.id;
     }
 
     public virtual void OnDotPressed()

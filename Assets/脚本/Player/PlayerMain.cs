@@ -9,11 +9,10 @@ public class PlayerMain : MonoBehaviour
 
     public GameObject blackDot;
 
-    private GameObject dotsParent;
     // Start is called before the first frame update
     void Start()
     {
-        dotsParent = GameObject.Find("dotsParent");
+        God.Init();
     }
 
     // Update is called once per frame
@@ -52,8 +51,9 @@ public class PlayerMain : MonoBehaviour
             //没点到东西
             Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             pos.z = 0;
-            GameObject go = Instantiate(blackDot, pos, Quaternion.identity);
-            go.transform.parent = dotsParent.transform;
+            //GameObject go = Instantiate(blackDot, pos, Quaternion.identity);
+            //go.transform.parent = dotsParent.transform;
+            God.dotManager.Spawn("Black", pos);
             Debug.DrawLine(origin,origin+50*Vector3.forward,Color.red,3.0f);
             
 
