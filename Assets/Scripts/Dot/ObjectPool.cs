@@ -10,14 +10,7 @@ public class ObjectPool : MonoBehaviour
 {
     public static ObjectPool Instance { get; private set; }
     
-    [System.Serializable]
-    public struct PoolPrefab
-    {
-        public int typeId;
-        public GameObject prefab;
-    }
-
-    public PoolPrefab[] prefabs;
+    [SerializeField]private DotSO[] DotsDatabase;
 
     // 实际的对象池（类型ID -> 队列）
     private Dictionary<int, Queue<GameObject>> poolDict;
@@ -31,10 +24,10 @@ public class ObjectPool : MonoBehaviour
             poolDict = new Dictionary<int, Queue<GameObject>>();
             prefabDict = new Dictionary<int, GameObject>();
 
-            foreach (var item in prefabs)
+            foreach (var item in DotsDatabase)
             {
-                prefabDict[item.typeId] = item.prefab;
-                poolDict[item.typeId] = new Queue<GameObject>();
+                prefabDict[item.TypeId] = item.Prefab;
+                poolDict[item.TypeId] = new Queue<GameObject>();
             }
         }
         else

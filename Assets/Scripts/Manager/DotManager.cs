@@ -97,6 +97,8 @@ public class DotManager
         {
             // 达到质变速度
             Debug.Log("发生了质变碰撞");
+
+            OnSpawnWhiteDot(script1.transform.position, script2.transform.position);
             return true;
         }
         else
@@ -110,8 +112,12 @@ public class DotManager
         
 
     }
-    
-    
+
+    private void OnSpawnWhiteDot(Vector3 pos1, Vector3 pos2)
+    {
+        //
+
+    }
     
     
 
