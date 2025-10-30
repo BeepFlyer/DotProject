@@ -2,15 +2,34 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Numerics;
 using UnityEngine;
-using Quaternion = UnityEngine.Quaternion;
 using Vector3 = UnityEngine.Vector3;
 
 public class DotManager
 {
     private DotFactory factory;
+    private BlackDotGravityManager black_gravity_mgr;
     private GameObject dotHolder;
 
-    private float blackDotCollideMinSpeed = 10.0f;
+    private float blackDotCollideMinSpeed = 10.0f; //黑点相撞质变最小速率
+
+    public float GRAVITY_CAL_TIME = 1; //重力中心计算间隔
+    
+    /// <summary>
+    /// 黑点重力中心
+    /// </summary>
+    public Vector3 GravityCenter
+    {
+        get
+        {
+            return _GravityCenter;
+        }
+        set
+        {
+            _GravityCenter = value;
+        }
+    }
+
+    private Vector3 _GravityCenter = Vector3.zero;
 
     private Dictionary<ulong,DotBase> dotList = new Dictionary<ulong, DotBase>(500);
 
@@ -21,6 +40,11 @@ public class DotManager
         factory.SetDotManager(this);
         dotHolder = GameObject.Find("/dotsParent");
         factory.SetDotHolder(dotHolder);
+
+        black_gravity_mgr = new BlackDotGravityManager();
+        black_gravity_mgr.SetDotManager(this);
+        black_gravity_mgr.Init();
+        
         Debug.Log("DotManager初始化完成");
 
     }
@@ -63,9 +87,6 @@ public class DotManager
         {
             // 达到质变速度
             Debug.Log("发生了质变碰撞");
-            Vector3 HitPos = script2.transform.position;
-            int whiteDotType = 1;
-            ObjectPool.Instance.GetObject(whiteDotType, HitPos, Quaternion.identity);
             return true;
         }
         else
@@ -79,5 +100,9 @@ public class DotManager
         
 
     }
+    
+    
+    
+    
 
 }
