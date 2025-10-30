@@ -15,7 +15,7 @@ public class DotBase : MonoBehaviour
 
     protected float randomSeed = 0;
 
-    protected virtual void Start()
+    protected virtual void Awake()
     {
         Assert.IsTrue(gameObject!=null,"未找到游戏对象");
         rb = gameObject.GetComponent<Rigidbody>();

@@ -22,9 +22,9 @@ public class BlackDot : DotBase
 
     private MapConfig _mapConfig;
     // Start is called before the first frame update
-    protected override void Start()
+    protected override void Awake()
     {
-        base.Start();
+        base.Awake();
         _mapConfig = GameObject.Find("MapConfig").GetComponent<MapConfig>();
         originScale = transform.localScale.x;
     }
