@@ -633,11 +633,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45dcd8e1c39a0c14bbbcc74a6670e203, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefabs:
-  - typeId: 0
-    prefab: {fileID: 1978618580150767339, guid: 489715745e5bb1644b1a7995f0fb23d9, type: 3}
-  - typeId: 1
-    prefab: {fileID: 1978618580150767339, guid: 0545cb657e221b340a304435f0f3ae93, type: 3}
+  DotsDatabase:
+  - {fileID: 11400000, guid: a9b7bcbf9921e8846a2c2babe3b46928, type: 2}
+  - {fileID: 11400000, guid: 3d4fdf87f94b9f1419ff8cffbb365d95, type: 2}
+  - {fileID: 11400000, guid: 3e74455bec4957b4abd4b89f29651c0d, type: 2}
 --- !u!1 &2027521507
 GameObject:
   m_ObjectHideFlags: 0

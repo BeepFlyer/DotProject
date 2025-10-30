@@ -53,7 +53,7 @@ public class WhiteDot : DotBase
         spawnPosition.z = center.z + Mathf.Sin(angle) * radius;
         spawnPosition.y = center.y;
 
-        ObjectPool.Instance.GetObject((int)GlobalMapping.dotType2prefab[dot.Type], spawnPosition, Quaternion.identity);
+        ObjectPool.Instance.GetObject((int)GlobalMapping.dotType2prefab[DotType.BlackDot], spawnPosition, Quaternion.identity);
     }
     private void ResetTimer()
     {
