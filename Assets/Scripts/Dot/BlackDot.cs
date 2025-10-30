@@ -16,27 +16,12 @@ public class BlackDot : DotBase
     public AnimationCurve onClickCurve;
     private float maxAnimeTime = 0.5f;
     private float nowAnimeTime = 0.5f;
-    private float originScale = 1;
 
     
 
-    private MapConfig _mapConfig;
-    // Start is called before the first frame update
-    protected override void Awake()
-    {
-        base.Awake();
-        _mapConfig = GameObject.Find("MapConfig").GetComponent<MapConfig>();
-        originScale = transform.localScale.x;
-    }
-
-    // Update is called once per frame
     void Update()
     {
-        //ShowVector(transform.position,"before");
-        Assert.IsTrue(transform != null, "未找到transform");
-        Assert.IsTrue(rb!=null,"未找到刚体组件");
-        transform.position = _mapConfig.GetNewPos(transform.position,rb.velocity);
-        //ShowVector(transform.position,"after");
+        transform.position = God.mapConfig.GetNewPos(transform.position,rb.velocity);
         if (nowAnimeTime < maxAnimeTime)
         {
             transform.localScale = Vector3.one* (onClickCurve.Evaluate((nowAnimeTime / maxAnimeTime))+originScale);
@@ -59,12 +44,7 @@ public class BlackDot : DotBase
         
         nowAnimeTime = 0;
     }
-
-    public override Vector3 GetSpeed()
-    {
-        return rb.velocity;
-    }
-
+    
     private void OnCollisionEnter(Collision other)
     {
         if (!sendFlag)

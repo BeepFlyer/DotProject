@@ -12,7 +12,12 @@ public class Launcher : MonoBehaviour
     {
         God.Init();
     }
-    
+
+    private void Start()
+    {
+        God.LateInit();
+    }
+
     [Button("立即编译")]
     public void ForceCompile()
     {

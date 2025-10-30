@@ -9,6 +9,8 @@ public class DotBase : MonoBehaviour
 {
     protected ulong id;
     protected Rigidbody rb;
+    protected float originScale = 1;
+
 
     
     public bool sendFlag = true;// 多个物体碰撞时，让一个物体进行报告，关闭其他物体的碰撞Flag
@@ -19,6 +21,8 @@ public class DotBase : MonoBehaviour
     {
         Assert.IsTrue(gameObject!=null,"未找到游戏对象");
         rb = gameObject.GetComponent<Rigidbody>();
+        originScale = transform.localScale.x;
+
 
     }
     
@@ -61,6 +65,6 @@ public class DotBase : MonoBehaviour
     public virtual Vector3 GetSpeed()
     {
         randomSeed = Random.Range(0, 360);
-        return Vector3.zero;
+        return rb.velocity;
     }
 }

@@ -6,11 +6,18 @@ using UnityEngine;
 public enum PrefabEnum
 {
     BlackDot = 0,
+    Player = 1,
 }
 
 public enum DotType
 {
     BlackDot,
+    MainDot,
+}
+
+public enum Music
+{
+    StartJourney,UnlockNewPath
 }
 
 public static class GlobalMapping
@@ -24,6 +31,13 @@ public static class GlobalMapping
     {
         [DotType.BlackDot] = PrefabEnum.BlackDot,
     };
+
+    public static Dictionary<Music, string> MusicPath = new Dictionary<Music, string>()
+    {
+        [Music.StartJourney] = "Assets/Resources/sound/bgm/startJourney.wav",
+        [Music.UnlockNewPath] = "Assets/Resources/sound/bgm/unlockNewPath.wav",
+    };
+
 
 }
 

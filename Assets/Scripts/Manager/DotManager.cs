@@ -9,6 +9,7 @@ public class DotManager
     private DotFactory factory;
     private BlackDotGravityManager black_gravity_mgr;
     private GameObject dotHolder;
+    private PlayerMain playerDot;
 
     private float blackDotCollideMinSpeed = 10.0f; //黑点相撞质变最小速率
 
@@ -65,6 +66,15 @@ public class DotManager
 
         return script;
     }
+
+    public void InitPlayer()
+    {
+        playerDot = God.player;
+        factory.SetMainDot(playerDot);
+        dotList[playerDot.GetDot().GetId()] = playerDot.GetDot();
+    }
+    
+    
 
     /// <summary>
     /// 去除点

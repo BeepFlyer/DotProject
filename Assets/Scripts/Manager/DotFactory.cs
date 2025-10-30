@@ -50,10 +50,20 @@ public class DotFactory
         DotBase script = go.GetOrAddComponent<DotBase>();
         script.SetId(dotId);
         script.Type = dotType;
-        dotId = 1;
+        dotId += 1;
         return script;
 
         
+    }
+
+    public void SetMainDot(PlayerMain player)
+    {
+        DotBase script = player.GetDot();
+        script.SetId(dotId);
+        script.Type = DotType.MainDot;
+        script.SetId(dotId);
+        dotId += 1;
+
     }
     
     public DotBase Spawn(DotType dotType,Vector3 pos)
