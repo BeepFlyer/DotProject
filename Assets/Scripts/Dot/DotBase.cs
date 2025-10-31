@@ -5,17 +5,35 @@ using UnityEngine;
 using UnityEngine.Assertions;
 using Random = UnityEngine.Random;
 
-public class DotBase : MonoBehaviour,IHasEnergy
+public class DotBase : MonoBehaviour,IHasEnergy,IReStartAble
 {
     #region 属性
     protected ulong id;
-    protected Rigidbody rb;
-    protected float originScale = 1;
+    public Rigidbody rb;
+    public float originScale = 1;
+    protected bool _debug = true;
+
+    /// <summary>
+    /// 损失能量的速率
+    /// </summary>
+    public float loseEnergyRateFactor = 0.1f;
 
     public float Energy
     {
         get { return _energy; }
-        set { _energy = value; }
+        set
+        {
+            if (_debug)
+            {Debug.Log($"尝试改变能量，旧{_energy}，新{value}");}
+
+            if (Mathf.Abs(value - _energy) >Mathf.Epsilon)
+            {
+                if (_debug)
+                {Debug.Log($"成功改变能量，旧{_energy}，新{value}");}
+                _energy = value;
+                OnEnergyChange();
+            }
+        }
     }
     private float _energy = 0;
     
@@ -57,12 +75,15 @@ public class DotBase : MonoBehaviour,IHasEnergy
 
     }
 
-    protected void Start()
+    public virtual void ReStart()
     {
+        _energy = _maxEnergy;
+
         if (God.dev.ShowEnergy)
         {
-            God.energyCanvasMgr.UpdateText(transform, Convert.ToString(Energy));
+            God.energyCanvasMgr.UpdateText(transform, _energy);
         }
+
     }
 
 
@@ -109,6 +130,29 @@ public class DotBase : MonoBehaviour,IHasEnergy
     {
         Energy = Mathf.Clamp(Energy + x, 0, MaxEnergy);
         return _energy;
+    }
+
+    protected void OnEnergyChange()
+    {
+        if (_energy < 0)
+        {
+                
+            if (God.dev.ShowEnergy)
+            {
+                God.energyCanvasMgr.DotDie(transform);
+            }
+
+            God.dotManager.DeSpawn(this);
+
+        }
+        else
+        {
+            if (God.dev.ShowEnergy)
+            {
+                God.energyCanvasMgr.UpdateText(transform,_energy);
+            }
+
+        }
     }
     
     #endregion

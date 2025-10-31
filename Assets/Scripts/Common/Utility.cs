@@ -36,5 +36,20 @@ public static class Utility
 
         return false;
     }
+    
+        public static  void ShowVector(Vector3 v,string prefix ="",GameObject go= null )
+        {
+            if (go)
+            {
+                Debug.Log(prefix+$"{go.name} pos x:{v.x} pos y:{v.y} pos z:{v.z}");
+
+            }
+            else
+            {
+                Debug.Log(prefix+$"pos x:{v.x} pos y:{v.y} pos z:{v.z}");
+
+            }
+        }
+
 
 }

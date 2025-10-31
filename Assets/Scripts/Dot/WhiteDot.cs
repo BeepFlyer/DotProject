@@ -18,8 +18,9 @@ public class WhiteDot : DotBase
         base.Awake();
     }
     
-    void Start()
+    public override void ReStart()
     {
+        base.ReStart();
         ResetTimer();
     }
 

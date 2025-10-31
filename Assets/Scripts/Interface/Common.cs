@@ -10,3 +10,8 @@ public interface IHasEnergy
     float AddEnergy(float amount);     // 增加能量（可返回当前能量）
 
 }
+
+public interface IReStartAble
+{
+    public void ReStart();
+}

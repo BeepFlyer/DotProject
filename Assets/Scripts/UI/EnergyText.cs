@@ -6,7 +6,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.Assertions;
 
-public class EnergyText : MonoBehaviour
+public class EnergyText : MonoBehaviour,IReStartAble
 {
     private Transform _aim;
     private TMP_Text text;
@@ -24,17 +24,22 @@ public class EnergyText : MonoBehaviour
         _rectTransform = GetComponent<RectTransform>();
     }
 
-    public void Init(Transform follow,string str = "")
+    public void ReStart()
     {
-        text.text = str;
+        
+    }
+
+    public void Init(Transform follow,float energy = 0)
+    {
+        text.text = Mathf.CeilToInt(energy).ToString();
         _aim = follow;
         UpdatePos();
     }
     
     
-    public void UpdateText(string txt)
+    public void UpdateText(float energy)
     {
-        text.text = txt;
+        text.text = Mathf.CeilToInt(energy).ToString();;
 
     }
 

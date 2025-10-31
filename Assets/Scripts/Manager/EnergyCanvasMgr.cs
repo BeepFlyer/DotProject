@@ -23,21 +23,40 @@ public class EnergyCanvasMgr
     }
 
 
-    public void UpdateText(Transform trans, string text = "0")
+    public void UpdateText(Transform trans, float energy = 0)
     {
         if (dictionary.ContainsKey(trans))
         {
-            dictionary[trans].UpdateText(text);
+            dictionary[trans].UpdateText(energy);
         }
         else
         {
             //创建新预制件
             GameObject temp = ObjectPool.Instance.GetObject((int) PrefabEnum.EnergyText, Vector3.zero, Quaternion.identity);
             EnergyText script = temp.GetComponent<EnergyText>();
-            dictionary[temp.transform] = script;
+            dictionary[trans] = script;
             if (_debug) Debug.Log($"成功将transform加入字典，名称:{trans.name}");
             temp.transform.SetParent(_canvas.transform);
-            script.Init(trans,text);
+            script.Init(trans,energy);
+        }
+
+    }
+
+    public void DotDie(Transform trans)
+    {
+        if (dictionary.ContainsKey(trans))
+        {
+            EnergyText script = dictionary[trans];
+            //归还预制件
+            ObjectPool.Instance.ReturnObject((int)PrefabEnum.EnergyText,script.gameObject);
+            dictionary.Remove(trans);
+            if (_debug) Debug.Log($"成功回收能量文字 EnergyCanvasMgr，名称:{script.name}");
+
+        }
+        else
+        {
+            if (_debug) Debug.Log($"字典中未找到对应键EnergyCanvasMgr,，名称:{trans.name}");
+
         }
 
     }

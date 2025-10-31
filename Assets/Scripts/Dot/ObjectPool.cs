@@ -62,6 +62,20 @@ public class ObjectPool : MonoBehaviour
 
         obj.transform.position = position;
         obj.transform.rotation = rotation;
+        if (obj.GetComponent<MonoBehaviour>())
+        {
+            obj.SendMessage("ReStart");
+            IReStartAble ok = obj.GetComponent<IReStartAble>();
+            if (ok == null)
+            {
+                Debug.LogError($"所有对象池生成的对象若有脚本，需要进行重新初始化,问题对象名称：{obj.name}");
+
+            }
+            else
+            {
+                ok.ReStart();
+            }
+        }
         return obj;
     }
 

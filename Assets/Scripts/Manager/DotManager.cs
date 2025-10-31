@@ -105,8 +105,10 @@ public class DotManager
         {
             //未达到质变速度
             Debug.Log("发生了湮灭碰撞");
-            DeSpawn(script1);
-            DeSpawn(script2);
+            //DeSpawn(script1);
+            //DeSpawn(script2);
+            script1.Energy = -10;
+            script2.Energy = -10;
             return false;
         }
         

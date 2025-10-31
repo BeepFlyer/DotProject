@@ -7,7 +7,7 @@ using UnityEngine;
 using Vector3 = UnityEngine.Vector3;
 
 
-public class PlayerMain : MonoBehaviour
+public class PlayerMain : MonoBehaviour,IReStartAble
 {
     public float speed = 1.0f;
 
@@ -25,29 +25,30 @@ public class PlayerMain : MonoBehaviour
     public float testDrag = 1.0f;// 测试阻力系数
 
 
-/// <summary>
-/// 设置相机，获取主点
-/// </summary>
-public void Init()
-    {
-        if (isInit) return;
-        Transform camtrans = Camera.main.gameObject.transform;
-        camtrans.SetParent(transform);
-        camtrans.localPosition = rb.transform.localPosition+10*Vector3.back;
-        camtrans.LookAt(rb.transform);
-        
-        cameraScript = camtrans.GetOrAddComponent<CameraMain>();
-        cameraScript.followAim = rb.transform;
-        camAim = rb.transform;
-        cameraScript.normalFollow = true;
-        
+    /// <summary>
+    /// 设置相机，获取主点
+    /// </summary>
+    public void Init()
+        {
+            if (isInit) return;
+            Transform camtrans = Camera.main.gameObject.transform;
+            camtrans.SetParent(transform);
+            camtrans.localPosition = rb.transform.localPosition+10*Vector3.back;
+            camtrans.LookAt(rb.transform);
+            
+            cameraScript = camtrans.GetOrAddComponent<CameraMain>();
+            cameraScript.followAim = rb.transform;
+            camAim = rb.transform;
+            cameraScript.normalFollow = true;
+            
 
-        mainDot = rb.gameObject.GetComponent<MainDot>();
+            mainDot = rb.gameObject.GetComponent<MainDot>();
+            mainDot.SetPressBeahviour(new BlackDotBahaviour());
 
-        gravityTransform = transform.Find("gravityObj");
+            gravityTransform = transform.Find("gravityObj");
 
-        isInit = true;
-    }
+            isInit = true;
+        }
 
     public DotBase GetDot()
     {
@@ -56,6 +57,12 @@ public void Init()
             mainDot = rb.gameObject.GetComponent<MainDot>();
         }
         return mainDot;
+    }
+
+
+    public void ReStart()
+    {
+        
     }
 
     // Update is called once per frame
@@ -112,7 +119,7 @@ public void Init()
             //没点到东西
             Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             pos.z = 0;
-            //God.dotManager.Spawn(DotType.BlackDot, pos);
+            God.dotManager.Spawn(DotType.BlackDot, pos);
             
             Debug.DrawLine(origin,origin+50*Vector3.forward,Color.red,3.0f);
             
