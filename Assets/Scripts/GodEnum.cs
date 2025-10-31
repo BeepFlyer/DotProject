@@ -17,6 +17,7 @@ public enum DotType
 {
     BlackDot,
     MainDot,
+    WhiteDot,
 }
 
 public enum Music
