@@ -63,6 +63,10 @@ public class DotBase : MonoBehaviour,IHasEnergy,IReStartAble,IUpdateAblePerS
     
     public bool sendFlag = true;// 多个物体碰撞时，让一个物体进行报告，关闭其他物体的碰撞Flag
 
+    public  float RandomSeed
+    {
+        get { return randomSeed; }
+    }
     protected float randomSeed = 0;
     
     #endregion

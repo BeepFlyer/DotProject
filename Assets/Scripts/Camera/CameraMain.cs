@@ -12,7 +12,7 @@ public class CameraMain : MonoBehaviour
     private Vector3 normalHeight = Vector3.back*10;
 
 
-    private void Update()
+    private void LateUpdate()
     {
         if (normalFollow && followAim)
         {

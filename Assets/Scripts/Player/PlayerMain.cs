@@ -78,7 +78,7 @@ public class PlayerMain : MonoBehaviour,IReStartAble
         if (Input.GetMouseButton(0))
         {
             // 持续判断
-            GenGravity();
+            //GenGravity();
         }
         else
         {
