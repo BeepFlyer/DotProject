@@ -12,6 +12,8 @@ public class MapConfig : MonoBehaviour
 {
     private float _size_X = 20.0f;
     private float _size_Y = 20.0f;
+
+    private bool _debug = false;
     
 
     public float size_X
@@ -48,18 +50,21 @@ public class MapConfig : MonoBehaviour
         {
             pos.x = -pos.x;
             change = true;
-            Debug.Log(($"X change{-pos.x}to{pos.x}"));
+            if (_debug)
+            { 
+                Debug.Log(($"X change{-pos.x}to{pos.x}"));
+            }
         }
         
         if ((vel.y > 0 && pos.y > size_Y/2)||(vel.y < 0 && pos.y < -size_Y/2))
         {
             pos.y = -pos.y;
             change = true;
-            Debug.Log(($"Y change{-pos.y}to{pos.y}"));
+            if (_debug) Debug.Log(($"Y change{-pos.y}to{pos.y}"));
         }
 
-        if (change)
-        {
+        if (change && _debug)
+        { 
             Debug.Log("发生了change");
         }
         return pos;

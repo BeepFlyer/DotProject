@@ -5,7 +5,7 @@ using UnityEngine;
 using NaughtyAttributes;
 using UnityEditor.Compilation;
 
-
+[DefaultExecutionOrder(0)]
 public class Launcher : MonoBehaviour
 {
     private void Awake()

@@ -12,6 +12,8 @@ public static class God
     public static MusicManager musicManager;
     public static PlayerMain player;
     public static MapConfig mapConfig;
+    public static DevelopManager dev;
+    public static EnergyCanvasMgr energyCanvasMgr;
 
     public static void Init()
     {
@@ -26,6 +28,12 @@ public static class God
         musicManager.Play(Music.UnlockNewPath);
         
         mapConfig = GameObject.Find("MapConfig").GetComponent<MapConfig>();
+
+        dev = new DevelopManager();
+
+        energyCanvasMgr = new EnergyCanvasMgr();
+        energyCanvasMgr.Init();
+
 
         
         Debug.Log("God初始化完成");

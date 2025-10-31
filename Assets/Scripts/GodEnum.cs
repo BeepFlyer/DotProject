@@ -7,6 +7,9 @@ public enum PrefabEnum
 {
     BlackDot = 0,
     Player = 1,
+    WhiteDot = 2,
+    EnergyText = 3,
+    EnergyCanvas = 4,
 
 }
 

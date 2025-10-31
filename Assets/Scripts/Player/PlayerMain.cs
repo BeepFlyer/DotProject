@@ -28,7 +28,7 @@ public class PlayerMain : MonoBehaviour
 /// <summary>
 /// 设置相机，获取主点
 /// </summary>
-    public void Init()
+public void Init()
     {
         if (isInit) return;
         Transform camtrans = Camera.main.gameObject.transform;

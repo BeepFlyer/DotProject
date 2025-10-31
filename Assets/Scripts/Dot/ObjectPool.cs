@@ -6,6 +6,8 @@ using UnityEngine;
 using UnityEngine.Pool;
 using Object = System.Object;
 
+[DefaultExecutionOrder(-10)]
+
 public class ObjectPool : MonoBehaviour
 {
     public static ObjectPool Instance { get; private set; }
