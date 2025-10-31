@@ -5,19 +5,20 @@ using UnityEngine;
 using UnityEngine.Assertions;
 using Random = UnityEngine.Random;
 
-public class DotBase : MonoBehaviour,IHasEnergy,IReStartAble
+public class DotBase : MonoBehaviour,IHasEnergy,IReStartAble,IUpdateAblePerS
 {
     #region 属性
     protected ulong id;
     public Rigidbody rb;
     public float originScale = 1;
-    protected bool _debug = true;
+    protected bool _debug = false;
 
     /// <summary>
-    /// 损失能量的速率
+    /// 损失能量的速率，几秒钟损失1能量
     /// </summary>
-    public float loseEnergyRateFactor = 0.1f;
+    public int loseEnergyRateFactor = 3;
 
+    private int loseEnergyTimer = 0;
     public float Energy
     {
         get { return _energy; }
@@ -42,7 +43,7 @@ public class DotBase : MonoBehaviour,IHasEnergy,IReStartAble
         get { return _maxEnergy; }
         set { _maxEnergy = value; }
     }
-    private float _maxEnergy = 100;
+    private float _maxEnergy = 10;
 
     
     public DotType Type
@@ -78,14 +79,21 @@ public class DotBase : MonoBehaviour,IHasEnergy,IReStartAble
     public virtual void ReStart()
     {
         _energy = _maxEnergy;
+        transform.localScale = originScale*Vector3.one;
 
         if (God.dev.ShowEnergy)
         {
             God.energyCanvasMgr.UpdateText(transform, _energy);
         }
 
+        God.timeManager.AddToUpdate(this);
+
     }
 
+    public virtual void OnReturnToPool()
+    {
+        God.timeManager.QuitUpdate(this);
+    }
 
     protected void OnEnable()
     {
@@ -128,7 +136,7 @@ public class DotBase : MonoBehaviour,IHasEnergy,IReStartAble
 
     public float AddEnergy(float x)
     {
-        Energy = Mathf.Clamp(Energy + x, 0, MaxEnergy);
+        Energy = Mathf.Clamp(Energy + x, -10, MaxEnergy);
         return _energy;
     }
 
@@ -152,6 +160,19 @@ public class DotBase : MonoBehaviour,IHasEnergy,IReStartAble
                 God.energyCanvasMgr.UpdateText(transform,_energy);
             }
 
+        }
+    }
+
+    public void DoUpdatePerS()
+    {
+        if (loseEnergyTimer >= loseEnergyRateFactor)
+        {
+            loseEnergyTimer = 0;
+            AddEnergy(-1);
+        }
+        else
+        {
+            loseEnergyTimer += 1;
         }
     }
     

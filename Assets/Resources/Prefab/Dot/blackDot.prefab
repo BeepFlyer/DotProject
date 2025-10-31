@@ -130,7 +130,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 0}
   originScale: 1
-  loseEnergyRateFactor: 0.1
+  loseEnergyRateFactor: 0
   sendFlag: 1
   randomSpeed: 1
   onClickCurve:
@@ -147,7 +147,7 @@ MonoBehaviour:
       outWeight: 0
     - serializedVersion: 3
       time: 0.3294379
-      value: 1
+      value: 0.5
       inSlope: 0.015672684
       outSlope: 0.015672684
       tangentMode: 0

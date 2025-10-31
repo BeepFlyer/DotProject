@@ -5,3 +5,11 @@ public interface IUpdateAble
 {
     public void DoUpdate(float deltaTime);
 }
+
+public interface IUpdateAblePerS
+{
+    /// <summary>
+    /// 每秒一次
+    /// </summary>
+    public void DoUpdatePerS();
+}

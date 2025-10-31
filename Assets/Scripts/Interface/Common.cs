@@ -14,4 +14,6 @@ public interface IHasEnergy
 public interface IReStartAble
 {
     public void ReStart();
+
+    public void OnReturnToPool();
 }

@@ -28,6 +28,12 @@ public class EnergyText : MonoBehaviour,IReStartAble
     {
         
     }
+    
+    public void OnReturnToPool()
+    {
+        
+    }
+
 
     public void Init(Transform follow,float energy = 0)
     {

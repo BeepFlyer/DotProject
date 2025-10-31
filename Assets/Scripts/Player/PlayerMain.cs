@@ -65,6 +65,11 @@ public class PlayerMain : MonoBehaviour,IReStartAble
         
     }
 
+    public void OnReturnToPool()
+    {
+        
+    }
+
     // Update is called once per frame
     void Update()
     {

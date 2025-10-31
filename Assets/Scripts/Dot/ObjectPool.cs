@@ -18,6 +18,8 @@ public class ObjectPool : MonoBehaviour
     private Dictionary<int, Queue<GameObject>> poolDict;
     private Dictionary<int, GameObject> prefabDict;
 
+    private bool _debug = false;
+
     void Awake()
     {
         if (Instance == null)
@@ -62,20 +64,14 @@ public class ObjectPool : MonoBehaviour
 
         obj.transform.position = position;
         obj.transform.rotation = rotation;
-        if (obj.GetComponent<MonoBehaviour>())
+        
+        if (_debug)
         {
-            obj.SendMessage("ReStart");
-            IReStartAble ok = obj.GetComponent<IReStartAble>();
-            if (ok == null)
-            {
-                Debug.LogError($"所有对象池生成的对象若有脚本，需要进行重新初始化,问题对象名称：{obj.name}");
-
-            }
-            else
-            {
-                ok.ReStart();
-            }
+            Debug.Log($"<color=green>获取对象池物体{obj.name}</color>");
         }
+
+        
+        ReStart(obj);
         return obj;
     }
 
@@ -91,8 +87,50 @@ public class ObjectPool : MonoBehaviour
             return;
         }
 
+        if (_debug)
+        {
+            Debug.Log($"<color=green>存入对象池{obj.name}</color>");
+        }
+
+        OnReturnToPoolCall(obj);
         obj.SetActive(false);
         poolDict[typeId].Enqueue(obj);
+    }
+
+    private void ReStart(GameObject obj)
+    {
+        if (obj.GetComponent<MonoBehaviour>())
+        {
+            IReStartAble ok = obj.GetComponent<IReStartAble>();
+            if (ok == null)
+            {
+                Debug.LogError($"所有对象池生成的对象若有脚本，需要进行重新初始化,问题对象名称：{obj.name}");
+
+            }
+            else
+            {
+                ok.ReStart();
+            }
+        }
+
+    }
+
+    private void OnReturnToPoolCall(GameObject obj)
+    {
+        if (obj.GetComponent<MonoBehaviour>())
+        {
+            IReStartAble ok = obj.GetComponent<IReStartAble>();
+            if (ok == null)
+            {
+                Debug.LogError($"所有对象池生成的对象若有脚本，销毁时要有注销函数,问题对象名称：{obj.name}");
+
+            }
+            else
+            {
+                ok.OnReturnToPool();
+            }
+        }
+
     }
 
 }
