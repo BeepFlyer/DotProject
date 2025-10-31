@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -49,6 +50,7 @@ public class DotFactory
         go.transform.parent = dotHolder.transform;
         DotBase script = go.GetOrAddComponent<DotBase>();
         script.SetId(dotId);
+        go.name = Convert.ToString(dotType) + dotId;
         script.Type = dotType;
         dotId += 1;
         return script;

@@ -14,7 +14,8 @@ public class DebugUI : MonoBehaviour
     {
         SpawnWhiteDotBtn.onClick.AddListener(() =>
         {
-            ObjectPool.Instance.GetObject((int)PrefabEnum.WhiteDot, Vector3.zero, quaternion.identity);
+            God.dotManager.Spawn(DotType.WhiteDot,Vector3.zero);
+            //ObjectPool.Instance.GetObject((int)PrefabEnum.WhiteDot, Vector3.zero, quaternion.identity);
         });
     }
 }

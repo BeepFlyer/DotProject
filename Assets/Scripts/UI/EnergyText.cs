@@ -32,6 +32,7 @@ public class EnergyText : MonoBehaviour,IReStartAble
     public void Init(Transform follow,float energy = 0)
     {
         text.text = Mathf.CeilToInt(energy).ToString();
+        text.gameObject.name = "energy_"+follow.name;
         _aim = follow;
         UpdatePos();
     }

@@ -10,7 +10,7 @@ public class EnergyCanvasMgr
 
     private Dictionary<Transform, EnergyText> dictionary = new Dictionary<Transform, EnergyText>();
     private GameObject _canvas;
-    private bool _debug = true;
+    private bool _debug = false;
 
     /// <summary>
     /// 创建一个显示能量的专用画布

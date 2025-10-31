@@ -30,11 +30,14 @@ public static class GlobalMapping
     public static Dictionary<PrefabEnum, DotType> prefabToDotType = new Dictionary<PrefabEnum, DotType>()
     {
         [PrefabEnum.BlackDot] = DotType.BlackDot,
+        [PrefabEnum.WhiteDot] = DotType.WhiteDot,
     };
     
     public static Dictionary<DotType,PrefabEnum> dotType2prefab = new Dictionary<DotType,PrefabEnum>()
     {
         [DotType.BlackDot] = PrefabEnum.BlackDot,
+        [DotType.WhiteDot] = PrefabEnum.WhiteDot,
+
     };
 
     public static Dictionary<Music, string> MusicPath = new Dictionary<Music, string>()
