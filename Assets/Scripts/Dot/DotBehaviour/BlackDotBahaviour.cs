@@ -22,7 +22,7 @@ public class BlackDotBahaviour : IDotPressBehaviour
         */
         Vector3 origin = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         origin.z = 0;
-        Vector3 dir = (dot.transform.position - origin).normalized * dot.RandomSeed/36;
+        Vector3 dir = (dot.transform.position - origin).normalized * dot.RandomSeed/180;
         dot.rb.velocity += dir;
         _nowAnimeTime = 0;
 

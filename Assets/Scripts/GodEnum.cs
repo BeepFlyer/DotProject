@@ -45,6 +45,15 @@ public static class GlobalMapping
         [Music.StartJourney] = "Assets/Resources/sound/bgm/startJourney.wav",
         [Music.UnlockNewPath] = "Assets/Resources/sound/bgm/unlockNewPath.wav",
     };
+    
+    /// <summary>
+    /// 
+    /// </summary>
+    public static Dictionary<string, float> floatConfig = new Dictionary<string, float>()
+    {
+        ["BlackSpeedUse"] = 0.1f,
+    };
+
 
 
 }

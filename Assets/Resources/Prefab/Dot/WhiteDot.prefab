@@ -67,7 +67,7 @@ Rigidbody:
   m_AngularDrag: 0.05
   m_UseGravity: 0
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 120
   m_CollisionDetection: 0
 --- !u!222 &147992214977655677
@@ -90,6 +90,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e11894fff95e86046ac2072db4944c5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rb: {fileID: 0}
+  originScale: 1
+  loseEnergyRateFactor: 3
   sendFlag: 1
 --- !u!1 &8929029109686750828
 GameObject:

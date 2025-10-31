@@ -164,7 +164,7 @@ Rigidbody:
   m_AngularDrag: 0.05
   m_UseGravity: 0
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 2
   m_Constraints: 120
   m_CollisionDetection: 0
 --- !u!114 &687850133406662016
@@ -179,6 +179,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4593dbb917681c349a6e2ea614bede4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rb: {fileID: 0}
+  originScale: 1
+  loseEnergyRateFactor: 3
   sendFlag: 1
   randomSpeed: 1
   onClickCurve:
